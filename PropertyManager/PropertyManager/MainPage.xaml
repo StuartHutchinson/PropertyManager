@@ -2,12 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PropertyManager"
-             x:Class="PropertyManager.MainPage">
+             x:Class="PropertyManager.MainPage"
+             Title="Property Manager">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Button Text="Properties" Clicked="ViewProperties"/>
+            <Button Text="Insurance Policies" Clicked="ViewInsurance"/>
+            <Button Text="Mortgages" Clicked="ViewMortgages"/>
+            <Button Text="Safety Certificates" Clicked="ViewSafetyCertificates"/>
+            <Button Text="Tenancies" Clicked="ViewTenancies"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

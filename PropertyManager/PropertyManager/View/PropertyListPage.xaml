@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PropertyManager.View.PropertyListPage"
+             Title="Property List">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="New Property" HorizontalOptions="CenterAndExpand" Command="NewPropertyCommand"/>
+            <ListView ItemsSource="Properties" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Large"/>
+                                <Label Text="{Binding Postcode}" FontSize="Small"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

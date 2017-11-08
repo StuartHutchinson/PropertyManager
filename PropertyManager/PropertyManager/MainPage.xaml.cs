@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PropertyManager.View;
+using PropertyManager.ViewModel;
 using Xamarin.Forms;
 
 namespace PropertyManager
@@ -12,6 +9,31 @@ namespace PropertyManager
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void ViewProperties()
+        {
+            Navigation.PushAsync(new PropertyListPage { BindingContext = new PropertyListViewModel() });
+        }
+
+        private void ViewInsurance()
+        {
+
+        }
+
+        private void ViewMortgages()
+        {
+
+        }
+
+        private void ViewSafetyCertificates()
+        {
+
+        }
+
+        private void ViewTenancies()
+        {
+
         }
     }
 }

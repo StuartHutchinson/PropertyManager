@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PropertyManager.View.AddressView">
+  <ContentView.Content>
+      <StackLayout>
+          <Label Text="{Binding Street1}"/>
+          <Label Text="{Binding Street2}"/>
+          <Label Text="{Binding Town}"/>
+          <Label Text="{Binding County}"/>
+          <Label Text="{Binding Postcode}"/>
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>
