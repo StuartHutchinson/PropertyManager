@@ -1,5 +1,6 @@
 ﻿using PropertyManager.View;
 using PropertyManager.ViewModel;
+using System;
 using Xamarin.Forms;
 
 namespace PropertyManager
@@ -11,27 +12,27 @@ namespace PropertyManager
             InitializeComponent();
         }
 
-        private void ViewProperties()
+        private void ViewProperties(object sender, EventArgs e)
         {
             Navigation.PushAsync(new PropertyListPage { BindingContext = new PropertyListViewModel() });
         }
 
-        private void ViewInsurance()
+        private void ViewInsurance(object sender, EventArgs e)
         {
 
         }
 
-        private void ViewMortgages()
+        private void ViewMortgages(object sender, EventArgs e)
         {
 
         }
 
-        private void ViewSafetyCertificates()
+        private void ViewSafetyCertificates(object sender, EventArgs e)
         {
 
         }
 
-        private void ViewTenancies()
+        private void ViewTenancies(object sender, EventArgs e)
         {
 
         }

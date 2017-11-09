@@ -5,14 +5,15 @@
              Title="Property List">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="New Property" HorizontalOptions="CenterAndExpand" Command="NewPropertyCommand"/>
-            <ListView ItemsSource="Properties" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ItemSelected="ListView_ItemSelected">
+            <Button Text="New Property" HorizontalOptions="CenterAndExpand" Command="{Binding NewPropertyCommand}"/>
+            <ListView ItemsSource="{Binding Properties}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" ItemSelected="ListView_ItemSelected" 
+                      RowHeight="60" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Large"/>
-                                <Label Text="{Binding Postcode}" FontSize="Small"/>
+                            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Large" VerticalOptions="StartAndExpand"/>
+                                <Label Text="{Binding Postcode}" FontSize="Small" VerticalOptions="EndAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

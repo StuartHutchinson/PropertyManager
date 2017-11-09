@@ -1,8 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace PropertyManager.Model
 {
-    class Tenant
+    public class Tenant
     {
         public string Name { get; set; }
         public string Email { get; set; }
@@ -10,5 +11,10 @@ namespace PropertyManager.Model
         public bool LeadTenant { get; set; }
         public Image ID { get; set; }
         public Address EndOfTenancyAddress { get; set; }
+
+        public static Tenant GetLeadTenant(List<Tenant> tenants)
+        {
+            return tenants?.Find(t => t.LeadTenant);
+        }
     }
 }

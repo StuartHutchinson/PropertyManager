@@ -2,7 +2,7 @@
 
 namespace PropertyManager.Model
 {
-    class Valuation
+    public class Valuation
     {
         public float ValuationAmount { get; set; }
         public string ValuedBy { get; set; }

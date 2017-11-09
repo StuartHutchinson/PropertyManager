@@ -1,14 +1,14 @@
-﻿using AutoMapper;
-using PropertyManager.Model;
+﻿using PropertyManager.Model;
+using PropertyManager.View;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace PropertyManager.ViewModel
 {
-    class PropertyViewModel
+    internal class PropertyViewModel : BaseMappingViewModel<Property, PropertyViewModel>
     {
-        private Property property { get; set; }
-
         public Address Address { get; set; }
         public DateTime PurchaseDate { get; set; }
         public int PurchasePrice { get; set; }
@@ -20,19 +20,172 @@ namespace PropertyManager.ViewModel
         public Tenancy CurrentTenancy { get; set; }
         public List<Tenancy> PreviousTenancies { get; set; }
 
-        public static PropertyViewModel CreateViewModel(Property p)
+        //public TaskCompletionSource<Property> retval = new TaskCompletionSource<Property>();
+        public AddressViewModel AddressViewModel { get; set; }
+
+        #region summary strings
+        public string TenancySummary
         {
-            PropertyViewModel vm;
-            if (p == null)
+            get
             {
-                vm = new PropertyViewModel { property = new Property() };
+                var summary = "No current tenancy";
+                if (CurrentTenancy != null)
+                {
+                    var dtEnd = CurrentTenancy.DtEnd;
+                    summary = "Ends on " + dtEnd.ToString("d");
+                }
+                return summary;
             }
-            else
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<Property, PropertyViewModel>());
-                vm = Mapper.Map<PropertyViewModel>(p);
-            }
-            return vm;
         }
+        public string InsuranceSummary
+        {
+            get
+            {
+                var summary = "No current insurance";
+                if (CurrentInsurance != null)
+                {
+                    var dtExpiry = CurrentInsurance.DtEnd;
+                    summary = "Expires on " + dtExpiry.ToString("d");
+                }
+                return summary;
+            }
+        }
+        public string MortgageSummary
+        {
+            get
+            {
+                var summary = "No current mortgage";
+                if (CurrentMortgage != null)
+                {
+                    var dtExpiry = CurrentMortgage.DtFixedRateExpiry;
+                    summary = "Fixed rate expires on " + dtExpiry.ToString("d");
+                }
+                return summary;
+            }
+        }
+        public string SafetyCertificateSummary
+        {
+            get
+            {
+                var summary = "No current safety certificates";
+                var gas = SafetyCertificate.GetLatestGas(SafetyCertificates);
+                var elec = SafetyCertificate.GetLatestElectrical(SafetyCertificates);
+                if (gas != null)
+                {
+                    summary = "Gas due on " + gas.DtNextDue.ToString("d");
+                    if (elec != null)
+                    {
+                        summary += ". Electrical due on " + elec.DtNextDue.ToString("d");
+                    }
+                    else
+                    {
+                        summary += ". No current electrical certificate";
+                    }
+                }
+                else if (elec != null)
+                {
+                    summary = "Electrical due on " + elec.DtNextDue.ToString("d") + ". No current gas certificate";
+                }
+                return summary;
+            }
+        }
+        #endregion
+        
+        public PropertyViewModel()
+        {
+            OKCommand = new Command(OKPressed);
+            DeletePropertyCommand = new Command(DeleteProperty);
+            TenancyDetailsCommand = new Command(ViewTenancyDetails);
+            InsuranceDetailsCommand = new Command(ViewInsuranceDetails);
+            MortgageDetailsCommand = new Command(ViewMortgageDetails);
+            SafetyCertificateDetailsCommand = new Command(ViewSafetyCertificateDetails);
+            PurchaseDate = DateTime.Today;
+        }        
+
+        #region commands
+        public Command OKCommand { get; }
+        public Command DeletePropertyCommand { get; }
+        public Command TenancyDetailsCommand { get; }
+        public Command InsuranceDetailsCommand { get; }
+        public Command MortgageDetailsCommand { get; }
+        public Command SafetyCertificateDetailsCommand { get; }
+
+        private void ViewSafetyCertificateDetails(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ViewMortgageDetails(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ViewTenancyDetails(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async void ViewInsuranceDetails(object obj)
+        {
+            InsuranceViewModel ivm = InsuranceViewModel.CreateViewModel(CurrentInsurance);
+            await PushAsync(new InsurancePage(ivm));
+            InsurancePolicy updated = await ivm.Retval.Task;
+            if (updated != null)
+            {
+                CurrentInsurance = updated;
+                OnPropertyChanged(nameof(CurrentInsurance));
+                OnPropertyChanged(nameof(InsuranceSummary));
+            }
+        }
+
+        private async void DeleteProperty(object obj)
+        {
+            var name = "this property";
+            if (Address?.Street1 != null && Address?.Street1.Length > 0)
+            {
+                name = Address?.Street1;
+            }
+            bool confirm = await DisplayAlert("Question", "Are you sure you want to delete " + name + "?", "Yes", "No");
+            if (!confirm)
+                return;
+
+            Retval.SetResult(null);
+            await PopAsync();
+        }
+
+        protected override async void OKPressed(object obj)
+        {
+            Address address = AddressViewModel.ValidateAndGetAddress();
+            if (address == null)
+                return;
+            if (!Validate())
+                return;
+
+            Property p = ReverseMap();
+            p.Address = address;
+            Retval.SetResult(p);
+            await PopAsync();
+        }
+
+        protected override bool Validate()
+        {            
+            return true;
+        }
+        #endregion commands
+
+        //public static PropertyViewModel CreateViewModel(Property p)
+        //{
+        //    PropertyViewModel vm;
+        //    if (p == null)
+        //    {
+        //        vm = new PropertyViewModel();
+        //    }
+        //    else
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<Property, PropertyViewModel>());
+        //        vm = Mapper.Map<PropertyViewModel>(p);
+        //    }
+        //    return vm;
+        //}
     }
 }

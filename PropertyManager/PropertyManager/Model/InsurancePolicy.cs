@@ -2,7 +2,7 @@
 
 namespace PropertyManager.Model
 {
-    class InsurancePolicy
+    public class InsurancePolicy
     {
         public string Provider { get; set; }
         public string PolicyNo { get; set; }

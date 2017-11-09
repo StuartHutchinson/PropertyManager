@@ -8,11 +8,13 @@ namespace PropertyManager.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PropertyPage : ContentPage
     {
-        public PropertyPage()
+        internal PropertyPage(PropertyViewModel vm)
         {
             InitializeComponent();
-            var vm = (PropertyViewModel)BindingContext;
-            addressView.BindingContext = AddressViewModel.CreateViewModel(vm.Address);
+            BindingContext = vm;
+            AddressViewModel avm = AddressViewModel.CreateViewModel(vm.Address);
+            addressView.BindingContext = avm;
+            vm.AddressViewModel = avm;
         }
     }
 }

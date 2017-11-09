@@ -2,7 +2,7 @@
 
 namespace PropertyManager.Model
 {
-    class Mortgage
+    public class Mortgage
     {
         public string Provider { get; set; }
         public string AccountNo { get; set; }

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PropertyManager.View.TenancyPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tenancy Start" HorizontalOptions="Start" WidthRequest="120"/>
+                <DatePicker Date="{Binding DtStart, Mode=TwoWay}" HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tenancy End" HorizontalOptions="Start" WidthRequest="120"/>
+                <DatePicker Date="{Binding DtEnd, Mode=TwoWay}" HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Monthly Rent" HorizontalOptions="Start" WidthRequest="120"/>
+                <Label Text="£" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding PurchasePrice, StringFormat='{0:##0}', Mode=TwoWay}" HorizontalOptions="StartAndExpand" Keyboard="Numeric"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tenants" HorizontalOptions="Start" WidthRequest="120"/>
+                <Label Text="{Binding TenantSummary}" HorizontalOptions="StartAndExpand"/>
+                <Button Text="Details" Command="{Binding TenantDetailsCommand}" HorizontalOptions="End"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

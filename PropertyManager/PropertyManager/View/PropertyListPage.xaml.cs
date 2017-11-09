@@ -1,9 +1,5 @@
-﻿using PropertyManager.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PropertyManager.Model;
+using PropertyManager.ViewModel;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,15 +14,20 @@ namespace PropertyManager.View
             InitializeComponent();
         }
 
-        private void NewProperty(PropertyListViewModel obj)
-        {
-            throw new NotImplementedException();
-        }
-
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            ListView listView = (ListView)sender;
+            if (listView.SelectedItem is null)
+                return;
+            var vm = (PropertyListViewModel)BindingContext;            
+            vm.ViewProperty((Property)listView.SelectedItem);
+            listView.SelectedItem = null;
+        }
+
+        protected override void OnDisappearing()
+        {
             var vm = (PropertyListViewModel)BindingContext;
-            vm.ViewProperty();
+            DependencyService.Get<IFileIO>().SaveProperties(vm.Properties);
         }
     }
 }

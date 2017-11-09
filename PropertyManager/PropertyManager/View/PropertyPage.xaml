@@ -4,11 +4,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PropertyManager.View.PropertyPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Address"/>
-                <local:AddressView x:Name="addressView"/>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Address" HorizontalOptions="Start" WidthRequest="120"/>
+                    <local:AddressView x:Name="addressView" HorizontalOptions="StartAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Tenancy" HorizontalOptions="Start" WidthRequest="120"/>
+                    <Label Text="{Binding TenancySummary}" HorizontalOptions="StartAndExpand"/>
+                    <Button Text="Details" Command="{Binding TenancyDetailsCommand}" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Purchase Price" HorizontalOptions="Start" WidthRequest="120"/>
+                    <Label Text="£" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding PurchasePrice, StringFormat='{0:###,##0}', Mode=TwoWay}" HorizontalOptions="StartAndExpand" Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Purchase Date" HorizontalOptions="Start" WidthRequest="120"/>
+                    <DatePicker Date="{Binding PurchaseDate, Mode=TwoWay}" HorizontalOptions="StartAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Insurance" HorizontalOptions="Start" WidthRequest="120"/>
+                    <Label Text="{Binding InsuranceSummary}" HorizontalOptions="StartAndExpand"/>
+                    <Button Text="Details" Command="{Binding InsuranceDetailsCommand}" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Mortgage" HorizontalOptions="Start" WidthRequest="120"/>
+                    <Label Text="{Binding MortgageSummary}" HorizontalOptions="StartAndExpand"/>
+                    <Button Text="Details" Command="{Binding MortgageDetailsCommand}" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Certificates" HorizontalOptions="Start" WidthRequest="120"/>
+                    <Label Text="{Binding SafetyCertificateSummary}" HorizontalOptions="StartAndExpand"/>
+                    <Button Text="Details" Command="{Binding SafetyCertificateDetailsCommand}" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="OK" Command="{Binding OKCommand}" HorizontalOptions="EndAndExpand"/>
+                    <Button Text="Delete Property" TextColor="Red" Command="{Binding DeletePropertyCommand}" HorizontalOptions="End"/>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

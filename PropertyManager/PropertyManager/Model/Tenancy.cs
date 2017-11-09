@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace PropertyManager.Model
 {
-    class Tenancy
+    public class Tenancy
     {
         public DateTime DtStart { get; set; }
         public DateTime DtEnd { get; set; }

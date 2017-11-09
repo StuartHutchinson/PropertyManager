@@ -4,11 +4,11 @@
              x:Class="PropertyManager.View.AddressView">
   <ContentView.Content>
       <StackLayout>
-          <Label Text="{Binding Street1}"/>
-          <Label Text="{Binding Street2}"/>
-          <Label Text="{Binding Town}"/>
-          <Label Text="{Binding County}"/>
-          <Label Text="{Binding Postcode}"/>
+            <Entry Text="{Binding Street1, Mode=TwoWay}" Placeholder="Street 1"/>
+            <Entry Text="{Binding Street2, Mode=TwoWay}" Placeholder="Street 2"/>
+            <Entry Text="{Binding Town, Mode=TwoWay}" Placeholder="Town"/>
+            <Entry Text="{Binding County, Mode=TwoWay}" Placeholder="County"/>
+            <Entry Text="{Binding Postcode, Mode=TwoWay}" Placeholder="Postcode"/>
       </StackLayout>
   </ContentView.Content>
 </ContentView>

@@ -3,29 +3,45 @@ using PropertyManager.Model;
 
 namespace PropertyManager.ViewModel
 {
-    class AddressViewModel
+    class AddressViewModel : BaseMappingViewModel<Address, AddressViewModel>
     {
-        private Address address;
-
         public string Street1 { get; set; }
         public string Street2 { get; set; }
         public string Town { get; set; }
         public string County { get; set; }
         public string Postcode { get; set; }
 
-        public static AddressViewModel CreateViewModel(Address a)
+        //public static AddressViewModel CreateViewModel(Address a)
+        //{
+        //    AddressViewModel vm;
+        //    if (a == null)
+        //    {
+        //        vm = new AddressViewModel();
+        //    }
+        //    else
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<Address, AddressViewModel>());
+        //        vm = Mapper.Map<AddressViewModel>(a);
+        //    }
+        //    return vm;
+        //}
+
+        public Address ValidateAndGetAddress()
         {
-            AddressViewModel vm;
-            if (a == null)
+            if (!Validate())
+                return null;
+            Mapper.Initialize(cfg => cfg.CreateMap<AddressViewModel, Address>());
+            return Mapper.Map<Address>(this);
+        }
+
+        protected override bool Validate()
+        {
+            if (Street1 == null || Street1.Length == 0)
             {
-                vm = new AddressViewModel { address = new Address() };
+                DisplayValidationError("You must enter a street name");
+                return false;
             }
-            else
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<Address, AddressViewModel>());
-                vm = Mapper.Map<AddressViewModel>(a);
-            }
-            return vm;
+            return true;
         }
     }
 }

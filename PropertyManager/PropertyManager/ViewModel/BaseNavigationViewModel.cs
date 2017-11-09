@@ -7,7 +7,7 @@ namespace PropertyManager.ViewModel
     /// <summary>
     /// Implements the INavigation interface on top of BaseViewModel.
     /// </summary>
-    public abstract class BaseNavigationViewModel : BaseViewModel, INavigation
+    public abstract class BaseNavigationViewModel : BaseViewModel, INavigation 
     {
         INavigation _Navigation => Application.Current?.MainPage?.Navigation;
 

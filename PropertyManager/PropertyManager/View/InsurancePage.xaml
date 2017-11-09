@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PropertyManager.View.InsurancePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Provider" WidthRequest="120"/>
+                <Entry Text="{Binding Provider, Mode=TwoWay}" HorizontalOptions="StartAndExpand" WidthRequest="200"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Policy Number" WidthRequest="120"/>
+                <Entry Text="{Binding PolicyNo, Mode=TwoWay}" HorizontalOptions="StartAndExpand" WidthRequest="200"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Start Date" WidthRequest="120"/>
+                <DatePicker Date="{Binding DtStart, Mode=TwoWay}" HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="End Date" WidthRequest="120"/>
+                <DatePicker Date="{Binding DtEnd, Mode=TwoWay}" HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Annual Price" WidthRequest="120"/>
+                <Label Text="£" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                <Entry Text="{Binding AnnualPrice, Mode=TwoWay, StringFormat='{0:##0.00}'}" HorizontalOptions="StartAndExpand" Keyboard="Numeric" WidthRequest="100"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Buildings Sum Insured" WidthRequest="120"/>
+                <Label Text="£" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                <Entry Text="{Binding BuildingsSumInsured, Mode=TwoWay, StringFormat='{0:###,##0}'}" HorizontalOptions="StartAndExpand" Keyboard="Numeric" WidthRequest="100"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Contents Sum Insured" WidthRequest="120"/>
+                <Label Text="£" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                <Entry Text="{Binding ContentsSumInsured, Mode=TwoWay, StringFormat='{0:##,##0}'}" HorizontalOptions="StartAndExpand" Keyboard="Numeric" WidthRequest="100"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Excess" WidthRequest="120"/>
+                <Entry Text="{Binding Excess, Mode=TwoWay}" HorizontalOptions="StartAndExpand" WidthRequest="200"/>
+            </StackLayout>
+            <Button Text="OK" Command="{Binding OKCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
