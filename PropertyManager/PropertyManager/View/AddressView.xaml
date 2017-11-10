@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PropertyManager.View.AddressView">
   <ContentView.Content>
-      <StackLayout>
-            <Entry Text="{Binding Street1, Mode=TwoWay}" Placeholder="Street 1"/>
-            <Entry Text="{Binding Street2, Mode=TwoWay}" Placeholder="Street 2"/>
-            <Entry Text="{Binding Town, Mode=TwoWay}" Placeholder="Town"/>
-            <Entry Text="{Binding County, Mode=TwoWay}" Placeholder="County"/>
-            <Entry Text="{Binding Postcode, Mode=TwoWay}" Placeholder="Postcode"/>
+      <StackLayout HorizontalOptions="StartAndExpand">
+            <Entry Text="{Binding Street1, Mode=TwoWay}" Placeholder="Street 1" HorizontalOptions="StartAndExpand"/>
+            <Entry Text="{Binding Street2, Mode=TwoWay}" Placeholder="Street 2" HorizontalOptions="StartAndExpand"/>
+            <Entry Text="{Binding Town, Mode=TwoWay}" Placeholder="Town" HorizontalOptions="StartAndExpand"/>
+            <Entry Text="{Binding County, Mode=TwoWay}" Placeholder="County" HorizontalOptions="StartAndExpand"/>
+            <Entry Text="{Binding Postcode, Mode=TwoWay}" Placeholder="Postcode" HorizontalOptions="StartAndExpand"/>
       </StackLayout>
   </ContentView.Content>
 </ContentView>

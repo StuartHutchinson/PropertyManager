@@ -18,7 +18,7 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Purchase Price" HorizontalOptions="Start" WidthRequest="120"/>
                     <Label Text="£" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-                    <Entry Text="{Binding PurchasePrice, StringFormat='{0:###,##0}', Mode=TwoWay}" HorizontalOptions="StartAndExpand" Keyboard="Numeric"/>
+                    <Entry Text="{Binding PurchasePrice, StringFormat='{0:###,##0}', Mode=TwoWay}" HorizontalOptions="StartAndExpand" Keyboard="Numeric" WidthRequest="80"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Purchase Date" HorizontalOptions="Start" WidthRequest="120"/>
@@ -39,9 +39,9 @@
                     <Label Text="{Binding SafetyCertificateSummary}" HorizontalOptions="StartAndExpand"/>
                     <Button Text="Details" Command="{Binding SafetyCertificateDetailsCommand}" HorizontalOptions="End"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="OK" Command="{Binding OKCommand}" HorizontalOptions="EndAndExpand"/>
-                    <Button Text="Delete Property" TextColor="Red" Command="{Binding DeletePropertyCommand}" HorizontalOptions="End"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="OK" Command="{Binding OKCommand}" HorizontalOptions="CenterAndExpand"/>
+                    <Button Text="Delete Property" TextColor="Red" Command="{Binding DeletePropertyCommand}" HorizontalOptions="Center" IsVisible="{Binding IsExistingProperty}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

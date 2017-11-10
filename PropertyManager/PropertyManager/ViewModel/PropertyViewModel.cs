@@ -20,6 +20,9 @@ namespace PropertyManager.ViewModel
         public Tenancy CurrentTenancy { get; set; }
         public List<Tenancy> PreviousTenancies { get; set; }
 
+        private bool existingProperty;
+        public bool IsExistingProperty { get { return existingProperty; } }
+
         //public TaskCompletionSource<Property> retval = new TaskCompletionSource<Property>();
         public AddressViewModel AddressViewModel { get; set; }
 
@@ -173,19 +176,11 @@ namespace PropertyManager.ViewModel
         }
         #endregion commands
 
-        //public static PropertyViewModel CreateViewModel(Property p)
-        //{
-        //    PropertyViewModel vm;
-        //    if (p == null)
-        //    {
-        //        vm = new PropertyViewModel();
-        //    }
-        //    else
-        //    {
-        //        Mapper.Initialize(cfg => cfg.CreateMap<Property, PropertyViewModel>());
-        //        vm = Mapper.Map<PropertyViewModel>(p);
-        //    }
-        //    return vm;
-        //}
+        new public static PropertyViewModel CreateViewModel(Property p)
+        {
+            PropertyViewModel vm = BaseMappingViewModel<Property, PropertyViewModel>.CreateViewModel(p);
+            vm.existingProperty = p != null;
+            return vm;
+        }
     }
 }
